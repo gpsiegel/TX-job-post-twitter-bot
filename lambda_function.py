@@ -5,7 +5,7 @@ from botocore.exceptions import ClientError
 import tweepy
 
 BUCKET_NAME = os.environ['BUCKET_NAME']
-KEY = 'dtx.txt'
+KEY = 'jobs.txt'
 
 s3 = boto3.resource('s3')
 ssm = boto3.client('ssm')
@@ -27,9 +27,9 @@ def get_job_desc():
     
     with open(filename) as f:
         lines = f.readlines()
-        return pass 
-        # put something different than the random read lines
-        #likely, iterate and read only the last 5 entries
+        return lines[-2]
+        # seeing the latest entry to the txt update
+        # the write skips a line in the file so it may need -2
 
 def lambda_handler(event, context):
     #SSM Parameters
@@ -47,4 +47,3 @@ def lambda_handler(event, context):
     tweet = get_job_desc()
     print(tweet)
     api.update_status(tweet)
-
