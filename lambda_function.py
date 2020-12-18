@@ -16,7 +16,7 @@ def get_params(name):
     return credentials
 
 def get_job_desc():
-    filename = '/tmp' + KEY
+    filename = '/tmp/' + KEY
     try:
         s3.Bucket(BUCKET_NAME).download_file(KEY, filename)
     except ClientError as e:
