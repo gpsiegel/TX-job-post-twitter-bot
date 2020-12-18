@@ -27,9 +27,9 @@ def get_job_desc():
     
     with open(filename) as f:
         lines = f.readlines()
-        return lines[-2]
+        return lines[-1]
         # seeing the latest entry to the txt update
-        # the write skips a line in the file so it may need -2
+       
 
 def lambda_handler(event, context):
     #SSM Parameters
